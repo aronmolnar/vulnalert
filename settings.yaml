@@ -1,0 +1,26 @@
+---
+discard_articles_older_than: 3
+instant:
+  - printout
+  #- mailjet
+  #- mailgun_warning
+summary:
+  - printout
+  #- mailgun
+
+db_path: '../'
+#db_path: '/home/user/db'  # Use this for Docker
+
+mailgun_api_key:
+mailgun_domain:
+
+mailjet_api_key:
+mailjet_secret_key:
+sent_to_mailjet_contact_list:
+mailjet_contact_list_id:
+
+email_recipients:
+#  - john.doe@example.com
+email_sender: # "jane.doe@example.com"
+email_sender_name: # "Jane Doe"
+email_footer: "Imprint:\nYour Name | Your street | Your Email address"

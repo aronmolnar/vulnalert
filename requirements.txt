@@ -1,0 +1,5 @@
+click==8.0.1
+feedparser==6.0.8
+pysqlite3-binary==0.4.6
+PyYAML==5.4.1
+requests==2.26.0
