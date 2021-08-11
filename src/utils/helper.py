@@ -5,8 +5,15 @@ import yaml
 from utils.statics import TYPE_WARNING, TYPE_EXPLOIT, TYPE_FEATURED, TYPE_VULNERABILITY, EMAIL_FOOTER, SETTINGS_PATH, \
     SETTINGS_FILENAME, SETTINGS_FILENAME_ENV
 
+
 settings_filname = os.environ.get(SETTINGS_FILENAME_ENV, SETTINGS_FILENAME)
 SETTINGS_FILE = os.path.join(os.environ.get(SETTINGS_PATH, '../'), settings_filname)
+HEADLINES = {
+    TYPE_VULNERABILITY: 'Vulnerabilities',
+    TYPE_WARNING: 'Warnings',
+    TYPE_EXPLOIT: 'Exploits',
+    TYPE_FEATURED: 'Featured',
+}
 
 
 def get_settings():
@@ -26,7 +33,7 @@ def articles_to_message(articles, add_footer=False, unsubscribe_link=None):
 
     for article_type in [TYPE_WARNING, TYPE_VULNERABILITY, TYPE_EXPLOIT, TYPE_FEATURED]:
         if any([a['article_type'] == article_type for a in articles]):
-            msg.append(f"# {article_type.capitalize()}")
+            msg.append(f"# {HEADLINES[article_type]}")
         else:
             # This article type is not present and therefore needs not headline
             continue
