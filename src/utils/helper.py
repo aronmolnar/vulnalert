@@ -5,7 +5,6 @@ import yaml
 from utils.statics import TYPE_WARNING, TYPE_EXPLOIT, TYPE_FEATURED, TYPE_VULNERABILITY, EMAIL_FOOTER, SETTINGS_PATH, \
     SETTINGS_FILENAME, SETTINGS_FILENAME_ENV
 
-
 settings_filname = os.environ.get(SETTINGS_FILENAME_ENV, SETTINGS_FILENAME)
 SETTINGS_FILE = os.path.join(os.environ.get(SETTINGS_PATH, '../'), settings_filname)
 HEADLINES = {

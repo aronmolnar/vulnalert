@@ -5,9 +5,9 @@ import click
 
 from sources.cert_at_warnungen import CertAtWarnungen
 from sources.cert_org import CertOrg
+from sources.cyber_gov_au import CyberGovAu
 from sources.exploit_db import ExploitDatabase
 from sources.heise_alerts import HeiseAlerts
-from sources.cyber_gov_au import CyberGovAu
 from utils.db import init_db, fetch_unpublished, mark_articles_published
 from utils.helper import settings
 from utils.mappings import PUBLISH_TYPES
