@@ -19,6 +19,6 @@ class RSS(Source):
                 publish_time=datetime(*entry['published_parsed'][:6]),
                 article_type=self.main_type,
             )
-            if article.outdated:
+            if article.outdated or not article.new:
                 break
             self.articles.append(article)

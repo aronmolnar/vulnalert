@@ -75,3 +75,14 @@ def mark_articles_published(urls, publish_type=PUBLISH_TYPE_INSTANT):
             else:
                 raise NotImplemented(f'Publish type {publish_type} not implemented')
             c.execute(statement, {'url': url})
+
+
+def article_exists(title):
+    with sqlite3.connect(db) as conn:
+        c = conn.cursor()
+        statement = 'SELECT title FROM articles where title=:title'
+        c.execute(statement, {'title': title})
+        if c.fetchone():
+            return True
+        else:
+            return False

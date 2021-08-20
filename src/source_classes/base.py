@@ -1,7 +1,7 @@
 import logging
 from datetime import datetime, timedelta
 
-from utils.db import store_new_article
+from utils.db import store_new_article, article_exists
 from utils.helper import settings
 from utils.helper import truncate_string
 from utils.statics import TYPE_UNKNOWN, LANGUAGE_UNKNOWN, TITLE_MAX_LENGTH, DISCARD_ARTICLES_OLDER_THAN
@@ -33,8 +33,8 @@ class Source:
                 # Ignore vulnerabilities of local clients
                 continue
 
-            store_new_article(article, data_source=self.name)
-
+            if article.new:
+                store_new_article(article, data_source=self.name)
 
     def fetch(self):
         pass
@@ -58,3 +58,8 @@ class Article:
             self.outdated = True
         else:
             self.outdated = False
+
+        if article_exists(self.title):
+            self.new = False
+        else:
+            self.new = True
