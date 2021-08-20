@@ -1,3 +1,4 @@
+import socket
 from datetime import datetime
 
 import feedparser
@@ -9,6 +10,7 @@ class RSS(Source):
     pass
 
     def fetch(self):
+        socket.setdefaulttimeout(5)
         parsed_feed = feedparser.parse(self.url)
         for entry in parsed_feed.get('entries', list()):
             article = Article(
