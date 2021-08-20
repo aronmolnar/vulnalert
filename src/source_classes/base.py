@@ -7,6 +7,7 @@ from utils.helper import truncate_string
 from utils.statics import TYPE_UNKNOWN, LANGUAGE_UNKNOWN, TITLE_MAX_LENGTH, DISCARD_ARTICLES_OLDER_THAN
 
 log = logging.getLogger(__name__)
+LOCAL_CLIENTS = ['chrome', 'firefox', 'edge', 'opera', 'thunderbird']
 
 
 class Source:
@@ -24,10 +25,16 @@ class Source:
         self.fetch()
         self.process_articles()
         for article in self.articles:
-            if article.article_type != TYPE_UNKNOWN:
-                store_new_article(article, data_source=self.name)
-            else:
+            if article.article_type == TYPE_UNKNOWN:
                 log.warning(f'Article {self.url} is of unknown type and will not be processed')
+                continue
+
+            if any(c.lower() in article.full_title.lower() for c in LOCAL_CLIENTS):
+                # Ignore vulnerabilities of local clients
+                continue
+
+            store_new_article(article, data_source=self.name)
+
 
     def fetch(self):
         pass
