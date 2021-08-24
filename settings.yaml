@@ -10,7 +10,7 @@ summary:
   #- mailgun
 
 omit_digest_on_weekdays:
-  - sunday
+  - Sunday
 
 db_path: '../'
 #db_path: '/home/user/db'  # Use this for Docker
