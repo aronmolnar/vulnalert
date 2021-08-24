@@ -22,6 +22,10 @@ LANGUAGE_UNKNOWN = 'unknown'
 PUBLISH_TYPE_INSTANT = 'instant'
 PUBLISH_TYPE_SUMMARY = 'summary'
 
+GITHUB_USER = 'github_user'
+GITHUB_PASSWORD = 'github_password'
+GITHUB_REPO = 'github_repo'
+
 MAILGUN_API_KEY = 'mailgun_api_key'
 MAILGUN_DOMAIN = 'mailgun_domain'
 

@@ -2,14 +2,22 @@
 discard_articles_older_than: 3
 instant:
   - printout
+  #- jekyll
   #- mailjet
   #- mailgun_warning
 summary:
   - printout
   #- mailgun
 
+omit_digest_on_weekdays:
+  - sunday
+
 db_path: '../'
 #db_path: '/home/user/db'  # Use this for Docker
+
+github_user:
+github_password:
+github_repo:
 
 mailgun_api_key:
 mailgun_domain:
