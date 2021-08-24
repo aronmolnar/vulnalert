@@ -18,6 +18,7 @@ class RSS(Source):
                 url=entry['id'],
                 publish_time=datetime(*entry['published_parsed'][:6]),
                 article_type=self.main_type,
+                language=self.language,
             )
             if article.outdated or not article.new:
                 break

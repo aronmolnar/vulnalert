@@ -1,10 +1,13 @@
 import logging
 from datetime import datetime, timedelta
 
+from googletrans import Translator
+
 from utils.db import store_new_article, article_exists
 from utils.helper import settings
 from utils.helper import truncate_string
-from utils.statics import TYPE_UNKNOWN, LANGUAGE_UNKNOWN, TITLE_MAX_LENGTH, DISCARD_ARTICLES_OLDER_THAN
+from utils.statics import TYPE_UNKNOWN, LANGUAGE_UNKNOWN, LANGUAGE_ENGLISH, TITLE_MAX_LENGTH, \
+    DISCARD_ARTICLES_OLDER_THAN
 
 log = logging.getLogger(__name__)
 LOCAL_CLIENTS = ['chrome', 'firefox', 'edge', 'opera', 'thunderbird']
@@ -44,9 +47,14 @@ class Source:
 
 
 class Article:
-    def __init__(self, title, url, publish_time, article_type):
-        self.full_title = title
-        self.title = truncate_string(title, maxlen=TITLE_MAX_LENGTH)
+    def __init__(self, title, url, publish_time, article_type, language):
+        translator = Translator()
+        self.language = language
+        if self.language != LANGUAGE_ENGLISH:
+            self.full_title = translator.translate(title, dest='en').text
+        else:
+            self.full_title = title
+        self.title = truncate_string(self.full_title, maxlen=TITLE_MAX_LENGTH)
         self.url = url
         self.publish_time = publish_time
         self.article_type = article_type

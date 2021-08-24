@@ -51,4 +51,5 @@ class CyberGovAu(Source):
                     url=url,
                     publish_time=date,
                     article_type=self.alert_status_type_mapping[alert_status],
+                    language=self.language,
                 ))

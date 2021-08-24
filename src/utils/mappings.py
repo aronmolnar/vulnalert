@@ -1,7 +1,7 @@
+from publish.jekyll import jekyll_post
 from publish.mailgun import mailgun_digest, mailgun_warning
 from publish.mailjet import mailjet_digest, mailjet_warning
 from publish.printout import printout
-from publish.jekyll import jekyll_post
 
 PUBLISH_TYPES = {
     'printout': printout,
