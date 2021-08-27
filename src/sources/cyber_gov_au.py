@@ -45,11 +45,13 @@ class CyberGovAu(Source):
             except (ValueError, TypeError):
                 log.warning('Processing data failed. Did HTML structure change?')
 
-            self.articles.append(
-                Article(
-                    title=title,
-                    url=url,
-                    publish_time=date,
-                    article_type=self.alert_status_type_mapping[alert_status],
-                    language=self.language,
-                ))
+            article = Article(
+                title=title,
+                url=url,
+                publish_time=date,
+                article_type=self.alert_status_type_mapping[alert_status],
+                language=self.language,
+            )
+            if article.outdated:
+                break
+            self.articles.append(article)
