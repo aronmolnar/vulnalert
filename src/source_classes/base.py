@@ -1,3 +1,4 @@
+import html
 import logging
 from datetime import datetime, timedelta
 
@@ -50,10 +51,10 @@ class Article:
     def __init__(self, title, url, publish_time, article_type, language):
         translator = Translator()
         self.language = language
+
+        self.full_title = html.escape(title)
         if self.language != LANGUAGE_ENGLISH:
             self.full_title = translator.translate(title, dest='en').text
-        else:
-            self.full_title = title
         self.title = truncate_string(self.full_title, maxlen=TITLE_MAX_LENGTH)
         self.url = url
         self.publish_time = publish_time
