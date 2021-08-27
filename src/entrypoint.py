@@ -8,13 +8,14 @@ from sources.cert_org import CertOrg
 from sources.cyber_gov_au import CyberGovAu
 from sources.exploit_db import ExploitDatabase
 from sources.heise_alerts import HeiseAlerts
+from sources.nuclei import Nuclei
 from utils.db import init_db, fetch_unpublished, mark_articles_published
 from utils.helper import settings
 from utils.mappings import PUBLISH_TYPES
 from utils.statics import PUBLISH_TYPE_SUMMARY, PUBLISH_TYPE_INSTANT, OMIT_WEEKDAYS
 
 log = logging.getLogger(__name__)
-sources = [CyberGovAu, CertAtWarnungen, HeiseAlerts, ExploitDatabase, CertOrg]
+sources = [CyberGovAu, CertAtWarnungen, HeiseAlerts, ExploitDatabase, CertOrg, Nuclei]
 
 
 @click.command()
