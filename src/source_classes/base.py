@@ -2,11 +2,8 @@ import html
 import logging
 from datetime import datetime, timedelta
 
-from googletrans import Translator
-
 from utils.db import store_new_article, article_exists
-from utils.helper import settings
-from utils.helper import truncate_string
+from utils.helper import settings, truncate_string, translate
 from utils.statics import TYPE_UNKNOWN, LANGUAGE_UNKNOWN, LANGUAGE_ENGLISH, TITLE_MAX_LENGTH, \
     DISCARD_ARTICLES_OLDER_THAN
 
@@ -49,12 +46,11 @@ class Source:
 
 class Article:
     def __init__(self, title, url, publish_time, article_type, language):
-        translator = Translator()
         self.language = language
 
         self.full_title = html.escape(title)
         if self.language != LANGUAGE_ENGLISH:
-            self.full_title = translator.translate(title, dest='en').text
+            self.full_title = translate(title, src=self.language, dest='en') or title
         self.title = truncate_string(self.full_title, maxlen=TITLE_MAX_LENGTH)
         self.url = url
         self.publish_time = publish_time

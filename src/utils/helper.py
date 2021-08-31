@@ -1,5 +1,7 @@
 import os
+from json import JSONDecodeError
 
+import requests
 import yaml
 
 from utils.statics import TYPE_WARNING, TYPE_EXPLOIT, TYPE_FEATURED, TYPE_VULNERABILITY, EMAIL_FOOTER, SETTINGS_PATH, \
@@ -25,6 +27,20 @@ def get_settings():
 
 
 settings = get_settings()
+
+
+def translate(text, src='de', dest='en'):
+    r = requests.get('https://clients5.google.com/translate_a/t',
+                     params={'client': 'dict-chrome-ex',
+                             'sl': src,
+                             'tl': dest,
+                             'q': text})
+    if r.status_code == 200:
+        try:
+            return r.json().get('sentences')[0]['trans']
+        except (IndexError, ValueError, JSONDecodeError):
+            pass
+    return None
 
 
 def articles_to_message(articles, add_footer=False, unsubscribe_link=None):
