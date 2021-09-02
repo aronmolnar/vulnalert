@@ -26,7 +26,7 @@ def mailjet_warning(articles, dry_run=False):
 
 
 def send_mail(articles, subject, dry_run=False):
-    msg = articles_to_message(articles, add_footer=True, unsubscribe_link='[[UNSUB_LINK]]')
+    msg = articles_to_message(articles, add_footer=True, unsubscribe_link='[[UNSUB_LINK]]', unescape_html=True)
     if not msg:
         # Nothing to send
         return

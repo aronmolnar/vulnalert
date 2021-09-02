@@ -26,7 +26,7 @@ def mailgun_warning(articles, dry_run=False):
 
 
 def send_mail(articles, subject, dry_run=False):
-    msg = articles_to_message(articles, add_footer=True)
+    msg = articles_to_message(articles, add_footer=True, unescape_html=True)
 
     if not msg:
         # Nothing to send

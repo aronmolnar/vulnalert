@@ -43,7 +43,7 @@ def translate(text, src='de', dest='en'):
     return None
 
 
-def articles_to_message(articles, add_footer=False, unsubscribe_link=None):
+def articles_to_message(articles, add_footer=False, unsubscribe_link=None, unescape_html=False):
     msg = list()
 
     for article_type in [TYPE_WARNING, TYPE_VULNERABILITY, TYPE_EXPLOIT, TYPE_FEATURED]:

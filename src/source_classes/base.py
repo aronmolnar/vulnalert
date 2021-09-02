@@ -8,7 +8,7 @@ from utils.statics import TYPE_UNKNOWN, LANGUAGE_UNKNOWN, LANGUAGE_ENGLISH, TITL
     DISCARD_ARTICLES_OLDER_THAN
 
 log = logging.getLogger(__name__)
-LOCAL_CLIENTS = ['chrome', 'firefox', 'edge', 'opera', 'thunderbird']
+LOCAL_CLIENTS = ['chrome', 'firefox', 'edge', 'opera', 'thunderbird', 'tor browser']
 
 
 class Source:

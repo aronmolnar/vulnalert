@@ -26,6 +26,11 @@ GITHUB_USER = 'github_user'
 GITHUB_PASSWORD = 'github_password'
 GITHUB_REPO = 'github_repo'
 
+TWITTER_API_KEY = 'twitter_api_key'
+TWITTER_API_SECRET_KEY = 'twitter_api_secret_key'
+TWITTER_ACCESS_TOKEN = 'twitter_access_token'
+TWITTER_ACCESS_TOKEN_SECRET = 'twitter_access_token_secret'
+
 MAILGUN_API_KEY = 'mailgun_api_key'
 MAILGUN_DOMAIN = 'mailgun_domain'
 

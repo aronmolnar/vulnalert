@@ -5,6 +5,7 @@ instant:
   #- jekyll
   #- mailjet
   #- mailgun_warning
+  #- twitter
 summary:
   - printout
   #- mailgun
@@ -14,6 +15,11 @@ omit_digest_on_weekdays:
 
 db_path: '../'
 #db_path: '/home/user/db'  # Use this for Docker
+
+twitter_api_key:
+twitter_api_secret_key:
+twitter_access_token:
+twitter_access_token_secret:
 
 github_user:
 github_password:
