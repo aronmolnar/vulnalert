@@ -1,3 +1,4 @@
+import html
 import os
 from json import JSONDecodeError
 
@@ -55,7 +56,8 @@ def articles_to_message(articles, add_footer=False, unsubscribe_link=None, unesc
 
         for article in articles:
             if article['article_type'] == article_type:
-                msg.append(f'"{article["title"]}": {article["url"]}')
+                msg.append(
+                    f'{html.unescape(article["title"]) if unescape_html else article["title"]}: {article["url"]}')
 
         msg.append('')  # newline between article types
 

@@ -1,3 +1,5 @@
+import html
+
 import tweepy
 
 from utils.helper import settings, truncate_string
@@ -16,8 +18,9 @@ def tweet(articles, dry_run=False):
         api = tweepy.API(auth)
 
     for article in articles:
-        title = truncate_string(article["title"], maxlen=TITLE_MAX_LENGTH)
-        msg = f'"{title}": {article["url"]}'
+        title = html.unescape(article["title"])
+        title = truncate_string(title, maxlen=TITLE_MAX_LENGTH)
+        msg = f'{title}: {article["url"]}'
         if dry_run:
             print('Twitter', msg)
             continue
