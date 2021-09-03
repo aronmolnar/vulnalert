@@ -29,7 +29,10 @@ def run(publish_instant, publish_summary, dry_run):
 
     # Fetch sources
     for source in sources:
-        source()
+        try:
+            source()
+        except Exception as e:
+            log.error(e)
 
     # Publish
     publish = []
@@ -44,7 +47,10 @@ def run(publish_instant, publish_summary, dry_run):
         articles = fetch_unpublished(publish_type=publish_type)
         for publish_method in instant_publish_methods:
             publish_method = PUBLISH_TYPES[publish_method]
-            publish_method(articles, dry_run=dry_run)
+            try:
+                publish_method(articles, dry_run=dry_run)
+            except Exception as e:
+                log.error(e)
 
         # Mark as instant published
         if not dry_run:
