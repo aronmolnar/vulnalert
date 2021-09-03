@@ -1,4 +1,5 @@
 import logging
+from pprint import pprint
 
 import requests
 from requests.auth import HTTPBasicAuth
@@ -26,7 +27,12 @@ def mailjet_warning(articles, dry_run=False):
 
 
 def send_mail(articles, subject, dry_run=False):
-    msg = articles_to_message(articles, add_footer=True, unsubscribe_link='[[UNSUB_LINK]]', unescape_html=True)
+    msg = articles_to_message(
+        articles,
+        add_footer=True,
+        unsubscribe_link='[[UNSUB_LINK]]',
+        unescape_html=True,
+        include_random_info=True, )
     if not msg:
         # Nothing to send
         return
@@ -66,6 +72,9 @@ def send_mail(articles, subject, dry_run=False):
 
         if r.status_code != 200:
             log.warning(f'Sending mailjet email failed: {r.text}', extra=data)
+    else:
+        print('Mailjet dry run')
+        pprint(data)
 
 
 def get_mailjet_contacts():

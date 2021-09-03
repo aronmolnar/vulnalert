@@ -11,6 +11,9 @@ summary:
 omit_digest_on_weekdays:
   - Sunday
 
+random_ps:
+#- This is a random message
+
 db_path: '../'
 #db_path: '/home/user/db'  # Use this for Docker
 

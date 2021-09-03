@@ -1,12 +1,13 @@
 import html
 import os
+import random
 from json import JSONDecodeError
 
 import requests
 import yaml
 
 from utils.statics import TYPE_WARNING, TYPE_EXPLOIT, TYPE_FEATURED, TYPE_VULNERABILITY, EMAIL_FOOTER, SETTINGS_PATH, \
-    SETTINGS_FILENAME, SETTINGS_FILENAME_ENV
+    SETTINGS_FILENAME, SETTINGS_FILENAME_ENV, RANDOM_PS
 
 settings_filname = os.environ.get(SETTINGS_FILENAME_ENV, SETTINGS_FILENAME)
 SETTINGS_FILE = os.path.join(os.environ.get(SETTINGS_PATH, '../'), settings_filname)
@@ -16,6 +17,7 @@ HEADLINES = {
     TYPE_EXPLOIT: 'Exploits',
     TYPE_FEATURED: 'Featured',
 }
+MIN_RANDOM_INFO_SAMPLE = 20
 
 
 def get_settings():
@@ -44,7 +46,12 @@ def translate(text, src='de', dest='en'):
     return None
 
 
-def articles_to_message(articles, add_footer=False, unsubscribe_link=None, unescape_html=False):
+def articles_to_message(
+        articles,
+        add_footer=False,
+        unsubscribe_link=None,
+        unescape_html=False,
+        include_random_info=False):
     msg = list()
 
     for article_type in [TYPE_WARNING, TYPE_VULNERABILITY, TYPE_EXPLOIT, TYPE_FEATURED]:
@@ -64,6 +71,16 @@ def articles_to_message(articles, add_footer=False, unsubscribe_link=None, unesc
     if not msg:
         # No need to add footer or anything else
         return None
+
+    if include_random_info:
+        i = random.randint(0, max(MIN_RANDOM_INFO_SAMPLE, len(settings[RANDOM_PS]) - 1))
+        random_info = None
+        try:
+            random_info = settings[RANDOM_PS][i]
+        except (TypeError, IndexError):
+            pass
+        if random_info:
+            msg.extend([f'PS: {random_info}', ''])
 
     if add_footer:
         if EMAIL_FOOTER in settings:

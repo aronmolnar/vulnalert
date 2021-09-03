@@ -40,3 +40,5 @@ EMAIL_RECIPIENTS = 'email_recipients'
 EMAIL_SENDER = 'email_sender'
 EMAIL_SENDER_NAME = 'email_sender_name'
 EMAIL_FOOTER = 'email_footer'
+
+RANDOM_PS = 'random_ps'
