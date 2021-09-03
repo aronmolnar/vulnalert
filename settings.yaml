@@ -3,12 +3,10 @@ discard_articles_older_than: 3
 instant:
   - printout
   #- jekyll
-  #- mailjet
-  #- mailgun_warning
   #- twitter
 summary:
   - printout
-  #- mailgun
+  #- mailjet
 
 omit_digest_on_weekdays:
   - Sunday
@@ -24,9 +22,6 @@ twitter_access_token_secret:
 github_user:
 github_password:
 github_repo:
-
-mailgun_api_key:
-mailgun_domain:
 
 mailjet_api_key:
 mailjet_secret_key:

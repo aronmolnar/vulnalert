@@ -31,9 +31,6 @@ TWITTER_API_SECRET_KEY = 'twitter_api_secret_key'
 TWITTER_ACCESS_TOKEN = 'twitter_access_token'
 TWITTER_ACCESS_TOKEN_SECRET = 'twitter_access_token_secret'
 
-MAILGUN_API_KEY = 'mailgun_api_key'
-MAILGUN_DOMAIN = 'mailgun_domain'
-
 MAILJET_API_KEY = 'mailjet_api_key'
 MAILJET_SECRET_KEY = 'mailjet_secret_key'
 SENT_TO_MAILJET_CONTACT_LIST = 'sent_to_mailjet_contact_list'
