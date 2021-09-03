@@ -22,17 +22,19 @@ sources = [CyberGovAu, CertAtWarnungen, HeiseAlerts, ExploitDatabase, CertOrg, N
 @click.option('--publish-instant/--no-publish-instant', default=False)
 @click.option('--publish-summary/--no-publish-summary', default=True)
 @click.option('--dry-run/--no-dry-run', default=True)
-def run(publish_instant, publish_summary, dry_run):
+@click.option('--fetch-sources/--no-fetch-sources', default=True)
+def run(publish_instant, publish_summary, dry_run, fetch_sources):
     if dry_run:
         log.warning('Dry run. Nothing will be published.')
     init_db()
 
     # Fetch sources
-    for source in sources:
-        try:
-            source()
-        except Exception as e:
-            log.error(e)
+    if fetch_sources:
+        for source in sources:
+            try:
+                source()
+            except Exception as e:
+                log.error(e)
 
     # Publish
     publish = []

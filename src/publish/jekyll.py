@@ -24,7 +24,7 @@ def jekyll_post(articles, dry_run=False):
         post_content = f'---\n{yaml.dump(post_content)}---'
         filename = f'_posts/{date}-{uuid.uuid4()}.md'
         if dry_run:
-            print("Github dry run")
+            print("Jekyll dry run")
             print(post_content)
             continue
         repo.create_file(filename, 'Add article', post_content)
