@@ -20,7 +20,7 @@ def tweet(articles, dry_run=False):
     for article in articles:
         title = html.unescape(article["title"])
         title = truncate_string(title, maxlen=TITLE_MAX_LENGTH)
-        msg = f'{title}: {article["url"]}'
+        msg = f'{title} {article["url"]}'
         if dry_run:
             print('Twitter', msg)
             continue
