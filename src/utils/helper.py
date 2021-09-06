@@ -40,7 +40,8 @@ def translate(text, src='de', dest='en'):
                              'q': text})
     if r.status_code == 200:
         try:
-            return r.json().get('sentences')[0]['trans']
+            sentences = r.json().get('sentences')
+            return ' '.join(s['trans'].strip() for s in sentences)
         except (IndexError, ValueError, JSONDecodeError):
             pass
     return None
