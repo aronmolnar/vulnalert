@@ -64,8 +64,9 @@ def articles_to_message(
 
         for article in articles:
             if article['article_type'] == article_type:
+                title = html.unescape(article["title"]) if unescape_html else article["title"]
                 msg.append(
-                    f'{html.unescape(article["title"]) if unescape_html else article["title"]}: {article["url"]}')
+                    f'* {title}: {article["url"]}')
 
         msg.append('')  # newline between article types
 
