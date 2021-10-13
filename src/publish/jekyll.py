@@ -13,7 +13,7 @@ def jekyll_post(articles, dry_run=False):
     repo = g.get_user().get_repo(settings[GITHUB_REPO])
 
     for article in articles:
-        date = dateutil.parser.isoparse(article['publish_time']).strftime("%Y-%m-%d")
+        date = dateutil.parser.isoparse(article['publish_time']).strftime("%Y-%m-%d %H:%M %z")
         post_content = {
             'layout': 'post',
             'title': article['title'],
