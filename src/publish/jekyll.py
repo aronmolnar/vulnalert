@@ -13,7 +13,7 @@ def jekyll_post(articles, dry_run=False):
     repo = g.get_user().get_repo(settings[GITHUB_REPO])
 
     for article in articles:
-        date = dateutil.parser.isoparse(article['publish_time']).strftime("%Y-%m-%d %H:%M %z")
+        date = dateutil.parser.isoparse(article['publish_time']).strftime("%Y-%m-%d %H:%M")
         post_content = {
             'layout': 'post',
             'title': article['title'],
@@ -22,7 +22,7 @@ def jekyll_post(articles, dry_run=False):
             'source_url': article['url'],
         }
         post_content = f'---\n{yaml.dump(post_content)}---'
-        filename = f'_posts/{date}-{uuid.uuid4()}.md'
+        filename = f'_posts/{date.split(" ")[0]}-{uuid.uuid4()}.md'
         if dry_run:
             print("Jekyll dry run")
             print(post_content)
